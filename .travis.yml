@@ -48,6 +48,9 @@ matrix:
         - name: "linux-arm64-graviton2-clang-locks"
           os: linux
           arch: arm64-graviton2
+          virt: lxd
+          group: edge
+          dist: xenial
           compiler: clang
           env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror"
         - name: "linux-arm64-gcc-tm"
@@ -58,6 +61,9 @@ matrix:
         - name: "linux-arm64-graviton2-gcc-tm"
           os: linux
           arch: arm64-graviton2
+          virt: lxd
+          group: edge
+          dist: xenial
           compiler: gcc
           env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror -DDEBUG"
 
