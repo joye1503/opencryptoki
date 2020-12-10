@@ -22,9 +22,32 @@ matrix:
           os: linux
           compiler: gcc
           env: CONFIG_OPTS="--enable-swtok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror"
+        - name: "linux-ppc64le-clang-locks"
+          os: linux-ppc64le
+          compiler: clang
+          env: CONFIG_OPTS="--enable-swtok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror"
+        - name: "linux-ppc64le-gcc-tm"
+          os: linux-ppc64le
+          compiler: gcc
+          env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror -DDEBUG"
+        - name: "linux-s390x-clang-locks"
+          os: linux
+          arch: s390x
+          compiler: clang
+          env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-icatok --enable-ep11tok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror -DDEBUG"
+        - name: "linux-s390x-gcc-tm"
+          os: linux
+          arch: s390x
+          compiler: gcc
+          env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-icatok --enable-ep11tok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror"
         - name: "linux-arm64-clang-locks"
           os: linux
           arch: arm64
+          compiler: clang
+          env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror"
+        - name: "linux-arm64-graviton2-clang-locks"
+          os: linux
+          arch: arm64-graviton2
           compiler: clang
           env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror"
         - name: "linux-arm64-gcc-tm"
@@ -32,26 +55,12 @@ matrix:
           arch: arm64
           compiler: gcc
           env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror -DDEBUG"
-        - name: "linux-arm64-graviton2-clang-locks"
+        - name: "linux-arm64-graviton2-gcc-tm"
           os: linux
           arch: arm64-graviton2
-          env: TOXENV=py37
-          dist: bionic
-          group: edge
-          virt: lxd
-          sudo: true
-          compiler: clang
-          env: CONFIG_OPTS="--enable-swtok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --enable-locks" CFLAGS="-O3 -Wextra -std=c99 -pedantic -Werror -DDEBUG"
-        - name: "linux-arm64-graviton2-clang-locks"
-          os: linux
-          arch: arm64-graviton2
-          env: TOXENV=py37
-          dist: bionic
-          group: edge
-          virt: lxd
-          sudo: true
           compiler: gcc
-          env: CONFIG_OPTS="--enable-swtok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror"
+          env: CONFIG_OPTS="--enable-swttok --enable-icsftok --enable-ccatok --enable-tpmtok --enable-testcases --disable-locks" CFLAGS="-O3 -Wno-clobbered -Wextra -std=c99 -pedantic -Werror -DDEBUG"
+
 before_script:
     - sudo groupadd pkcs11
     - ./bootstrap.sh
